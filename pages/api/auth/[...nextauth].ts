@@ -1,10 +1,10 @@
 import NextAuth, { AuthOptions } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import prismadb from "@/lib/prismadb";
-import { compare } from "bcrypt";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { compare } from "bcrypt";
+import prismadb from "@/lib/prismadb";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -26,7 +26,7 @@ export const authOptions: AuthOptions = {
         },
         password: {
           label: "Password",
-          type: "password",
+          type: "passord",
         },
       },
       async authorize(credentials) {
