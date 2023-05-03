@@ -69,4 +69,12 @@ export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
+console.log("GITHUB_ID:", process.env.GITHUB_ID);
+console.log("GITHUB_SECRET:", process.env.GITHUB_SECRET);
+console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
+console.log("GOOGLE_CLIENT_SECRET:", process.env.GOOGLE_CLIENT_SECRET);
+console.log("NEXTAUTH_JWT_SECRET:", process.env.NEXTAUTH_JWT_SECRET);
+console.log("NEXTAUTH_SECRET:", process.env.NEXTAUTH_SECRET);
+console.log("NODE_ENV:", process.env.NODE_ENV);
+
 export default NextAuth(authOptions);
