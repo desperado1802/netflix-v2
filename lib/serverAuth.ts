@@ -4,10 +4,20 @@ import { getServerSession } from "next-auth";
 import prismadb from "@/lib/prismadb";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
+interface SessionInterface {
+  user?: {
+    email: string;
+  };
+}
+
 const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerSession(req, res, authOptions);
 
-  if (!session?.user?.email) {
+  if (!isSessionInterface(session)) {
+    throw new Error("Invalid session object");
+  }
+
+  if (!session.user?.email) {
     throw new Error("Not signed in");
   }
 
@@ -23,5 +33,9 @@ const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
 
   return { currentUser };
 };
+
+function isSessionInterface(session: any): session is SessionInterface {
+  return session && session.user && typeof session.user.email === "string";
+}
 
 export default serverAuth;
